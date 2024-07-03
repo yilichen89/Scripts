@@ -1,7 +1,7 @@
-DOMAIN-SUFFIX,coze.com
-DOMAIN-SUFFIX,ciciai.com
-DOMAIN-SUFFIX,byteoversea.com
+HOST-SUFFIX,coze.com,Coze
+HOST-SUFFIX,ciciai.com,Coze
+HOST-SUFFIX,byteoversea.com,Coze
 # > 下面的不确定
-DOMAIN-SUFFIX,ttwstatic.com
-DOMAIN-SUFFIX,ciciaicdn.com
-DOMAIN-SUFFIX,byteintlapi.com
+HOST-SUFFIX,ttwstatic.com,Coze
+HOST-SUFFIX,ciciaicdn.com,Coze
+HOST-SUFFIX,byteintlapi.com,Coze
