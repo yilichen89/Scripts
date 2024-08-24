@@ -8,7 +8,7 @@ hostname = cloud.bankofchina.com
 
 const url = $request.url;
 
-if (url.includes("https://cloud.bankofchina.com/zj/pigeonqy/signinmgr/attencelocation.php")) {
+if (url.includes("https://cloud.bankofchina.com/zj/pigeonqy/signinmgr/recordowrkndoffwork.php")) {
     // 处理位置信息请求
     var body = $request.body;
     if (body) {
@@ -18,7 +18,7 @@ if (url.includes("https://cloud.bankofchina.com/zj/pigeonqy/signinmgr/attenceloc
     }
     $done({body: body});
 }
-else if (url.includes("https://cloud.bankofchina.com/zj/pigeonqy/signinmgr/recordowrkndoffwork.php")) {
+else if (url.includes("https://cloud.bankofchina.com/zj/pigeonqy/signinmgr/attencelocation.php")) {
     // 处理响应页面
     let responseBody = $response.body;
     
