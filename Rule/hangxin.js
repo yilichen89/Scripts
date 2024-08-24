@@ -7,18 +7,19 @@ hostname = cloud.bankofchina.com
 // Quantumult X Script
 
 const url = $request.url;
-const targetURL = "https://cloud.bankofchina.com/zj/pigeonqy/signinmgr/attencelocation.php";
 
-if (url.indexOf(targetURL) !== -1) {
-    // 处理请求体
+if (url.includes("https://cloud.bankofchina.com/zj/pigeonqy/signinmgr/attencelocation.php")) {
+    // 处理位置信息请求
     var body = $request.body;
     if (body) {
         body = body.replace(/actuallongitude=[^&]*/, "actuallongitude=120.585252");
         body = body.replace(/actuallatitude=[^&]*/, "actuallatitude=29.996876");
         body = body.replace(/ctualscope=[^&]*/, "ctualscope=27.8");
     }
-
-    // 处理响应体
+    $done({body: body});
+}
+else if (url.includes("https://cloud.bankofchina.com/zj/pigeonqy/signinmgr/recordowrkndoffwork.php")) {
+    // 处理响应页面
     let responseBody = $response.body;
     
     // 替换 .hide() 为 .show()
@@ -39,7 +40,8 @@ if (url.indexOf(targetURL) !== -1) {
     // 修改if语句的条件
     responseBody = responseBody.replace(/if\s*\(\s*signscope\s*>=\s*distance\s*\)/g, 'if(true)');
     
-    $done({body: body, response: {body: responseBody}});
-} else {
+    $done({body: responseBody});
+}
+else {
     $done({});
 }
