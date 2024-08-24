@@ -25,20 +25,20 @@ else if (url.includes("https://cloud.bankofchina.com/zj/pigeonqy/signinmgr/atten
     // 替换 .hide() 为 .show()
     responseBody = responseBody.replace(/\.hide\(\)/g, '.show()');
     
-    // 完全移除检查距离和显示提示的相关代码
-    responseBody = responseBody.replace(/if\s*\(\s*signscope\s*<\s*distance\s*\)\s*\{[\s\S]*?showtips\s*\([^)]*\)\s*;[\s\S]*?\}/g, '');
+    // // 完全移除检查距离和显示提示的相关代码
+    // responseBody = responseBody.replace(/if\s*\(\s*signscope\s*<\s*distance\s*\)\s*\{[\s\S]*?showtips\s*\([^)]*\)\s*;[\s\S]*?\}/g, '');
     
-    // 修改签到和签退函数，移除距离检查逻辑
-    responseBody = responseBody.replace(/function\s+clockin\(\)\s*\{[\s\S]*?\}/g, function(match) {
-        return match.replace(/if\s*\(\s*signscope\s*<\s*distance\s*\)\s*\{[\s\S]*?\}/g, '');
-    });
+    // // 修改签到和签退函数，移除距离检查逻辑
+    // responseBody = responseBody.replace(/function\s+clockin\(\)\s*\{[\s\S]*?\}/g, function(match) {
+    //     return match.replace(/if\s*\(\s*signscope\s*<\s*distance\s*\)\s*\{[\s\S]*?\}/g, '');
+    // });
     
-    responseBody = responseBody.replace(/function\s+signout\(\)\s*\{[\s\S]*?\}/g, function(match) {
-        return match.replace(/if\s*\(\s*signscope\s*<\s*distance\s*\)\s*\{[\s\S]*?\}/g, '');
-    });
+    // responseBody = responseBody.replace(/function\s+signout\(\)\s*\{[\s\S]*?\}/g, function(match) {
+    //     return match.replace(/if\s*\(\s*signscope\s*<\s*distance\s*\)\s*\{[\s\S]*?\}/g, '');
+    // });
     
-    // 修改if语句的条件
-    responseBody = responseBody.replace(/if\s*\(\s*signscope\s*>=\s*distance\s*\)/g, 'if(true)');
+    // // 修改if语句的条件
+    // responseBody = responseBody.replace(/if\s*\(\s*signscope\s*>=\s*distance\s*\)/g, 'if(true)');
     
     $done({body: responseBody});
 }
