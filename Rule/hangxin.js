@@ -1,3 +1,9 @@
+[mitm]
+hostname = cloud.bankofchina.com
+[rewrite_local]
+^https:\/\/cloud\.bankofchina\.com\/zj\/pigeonqy\/signinmgr\/recordowrkndoffwork.php url script-response-body https://raw.githubusercontent.com/yilichen89/Scripts/main/Rule/hangxin.js
+^https:\/\/cloud\.bankofchina\.com\/zj\/pigeonqy\/signinmgr\/recordowrkndoffwork.php url script-request-body https://raw.githubusercontent.com/yilichen89/Scripts/main/Rule/hangxin.js
+/**********************************************************/
 // Quantumult X Script
 
 const url = $request.url;
