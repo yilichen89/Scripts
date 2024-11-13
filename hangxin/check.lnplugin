@@ -1,14 +1,12 @@
-#!name=BOC Location
-#!desc=Bank of China Location Modifier
-#!author=Your Name
-#!homepage=https://github.com/your-repository
+#!name=BOC Checkin
+#!desc=Bank of China Checkin Modifier
+#!author=YiliChen
+#!homepage=https://github.com/yilichen89
 #!icon=https://example.com/icon.png
 
 [Script]
-http-response ^https://cloud\.bankofchina\.com/zj/pigeonqy/signinmgr/attencelocation\.php script-path=https://raw.githubusercontent.com/yilichen89/Scripts/refs/heads/main/hangxin/showHideReplacer.js, requires-body=true, tag=showHideReplacer
-http-request ^https://cloud\.bankofchina\.com/zj/pigeonqy/signinmgr/recordworkandoffwork\.php script-path=https://raw.githubusercontent.com/yilichen89/Scripts/refs/heads/main/hangxin/modify-location.js, requires-body=true, tag=modify-location
-
-
+修改定位信息 = type=http-request-body,pattern=^https://cloud.bankofchina.com/zj/pigeonqy/signinmgr/recordworkandoffwork.php,script-path=https://raw.githubusercontent.com/你的GitHub用户名/my-loon-plugin/main/modify-location.js
+隐藏/显示替换 = type=http-response,pattern=^https://cloud.bankofchina.com/zj/pigeonqy/signinmgr/attencelocation.php,script-path=https://raw.githubusercontent.com/你的GitHub用户名/my-loon-plugin/main/showHideReplacer.js
 
 [MITM]
 hostname = cloud.bankofchina.com
