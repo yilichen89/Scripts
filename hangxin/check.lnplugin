@@ -5,8 +5,8 @@
 #!icon=https://example.com/icon.png
 
 [Script]
-修改定位信息 = type=http-request-body,pattern=^https://cloud.bankofchina.com/zj/pigeonqy/signinmgr/recordworkandoffwork.php,script-path=https://raw.githubusercontent.com/yilichen89/Scripts/refs/heads/main/hangxin/modify-location.js
-隐藏/显示替换 = type=http-response,pattern=^https://cloud.bankofchina.com/zj/pigeonqy/signinmgr/attencelocation.php,script-path=https://raw.githubusercontent.com/yilichen89/Scripts/refs/heads/main/hangxin/showHideReplacer.js
+http-request ^https://cloud\.bankofchina\.com/zj/pigeonqy/signinmgr/recordworkandoffwork\.php script-path=https://raw.githubusercontent.com/yilichen89/Scripts/refs/heads/main/hangxin/modify-location.js, requires-body=true, tag=modify-location
+http-response ^https://cloud\.bankofchina\.com/zj/pigeonqy/signinmgr/attencelocation\.php script-path=https://raw.githubusercontent.com/yilichen89/Scripts/refs/heads/main/hangxin/showHideReplacer.js, requires-body=true, tag=showHideReplacer
 
 [MITM]
 hostname = cloud.bankofchina.com
