@@ -1,5 +1,3 @@
-# 修改ChatGPT的User-Agent请求头
-# 将iOS版本修改为17.0.0并自动获取最新ChatGPT版本
 const CACHE_KEY = 'CHATGPT_LATEST_VERSION';
 const CACHE_EXPIRE = 86400000; // 24小时的毫秒数
 
