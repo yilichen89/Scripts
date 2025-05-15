@@ -64,8 +64,14 @@ function modifyHeaders(headers, version) {
 // 主函数
 async function main() {
   const headers = $request.headers;
+  const url = $request.url;
+  console.log(`处理请求: ${url}`); // 添加日志记录
+  
   const latestVersion = await getVersion();
+  console.log(`使用版本号: ${latestVersion}`); // 添加日志记录
+  
   const modifiedHeaders = modifyHeaders(headers, latestVersion);
+  console.log(`修改后UA: ${modifiedHeaders['user-agent']}`); // 添加日志记录
   
   $done({headers: modifiedHeaders});
 }
