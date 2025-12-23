@@ -1,7 +1,9 @@
-let body = $request.body;
+let body = $response.body;
 if (body) {
-    body = body.replace(/actuallongitude=[^&]*/, "actuallongitude=120.585252");
-    body = body.replace(/actuallatitude=[^&]*/, "actuallatitude=29.996876");
-    body = body.replace(/ctualscope=[^&]*/, "ctualscope=27.8");
+    let obj = JSON.parse(body);
+    if (obj.data) {
+        obj.data.longitude1 = 120.5853; 
+        obj.data.latitude1 = 29.99663;
+    }
+    $done({ body: JSON.stringify(obj) });
 }
-$done({body});
