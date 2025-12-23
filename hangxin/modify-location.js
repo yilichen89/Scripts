@@ -4,6 +4,7 @@ if (body) {
     if (obj.data) {
         obj.data.longitude1 = 120.5853; 
         obj.data.latitude1 = 29.99663;
+        obj.data.signScope = "999999";
     }
     $done({ body: JSON.stringify(obj) });
 }
