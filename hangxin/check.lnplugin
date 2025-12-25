@@ -5,10 +5,13 @@
 #!icon=https://raw.githubusercontent.com/yilichen89/Scripts/main/icon/hangxin.png
 
 [Script]
-# 处理获取用户信息 (修改响应体)
-http-response ^https:\/\/zj\.brcloud\.bankofchina\.com\/staff\/wework\/api\/wework\/staffsignin\/entrance\/getUserInfo script-path=modify-location.js, requires-body=true, tag=打卡前置伪装
-# 处理签到提交 (修改请求体)
-http-request ^https:\/\/zj\.brcloud\.bankofchina\.com\/staff\/wework\/api\/wework\/staffsignin\/entrance\/(SignIn|SignOut) script-path=modify-location.js, requires-body=true, tag=提交数据拦截
+# 1. 拦截 API 请求与响应
+http-response ^https:\/\/zj\.brcloud\.bankofchina\.com\/staff\/wework\/api\/wework\/staffsignin\/entrance\/getUserInfo script-path=boc_final.js, requires-body=true, tag=获取信息修改
+http-request ^https:\/\/zj\.brcloud\.bankofchina\.com\/staff\/wework\/api\/wework\/staffsignin\/entrance\/(SignIn|SignOut) script-path=boc_final.js, requires-body=true, tag=提交数据拦截
+
+# 2. 强制修改 JS 逻辑：将 “距离 > 范围” 的判断直接改为 “false”
+# 这样即使显示 14000 米，点击签到也不会弹窗提示超出范围 
+http-response ^https:\/\/zj\.brcloud\.bankofchina\.com\/staff\/wework\/staffsignin\/static\/js\/app\..*\.js$ response-body-replace "this.mi>Number(this.userData.signScope)" "false"
 
 [MITM]
 hostname = zj.brcloud.bankofchina.com
