@@ -5,7 +5,10 @@
 #!icon=https://raw.githubusercontent.com/yilichen89/Scripts/main/icon/hangxin.png
 
 [Script]
-http-request ^https://zj\.brcloud\.bankofchina\.com/staff/wework/api/wework/staffsigin/entrance/Signout script-path=https://raw.githubusercontent.com/yilichen89/Scripts/refs/heads/main/hangxin/modify-location.js, requires-body=true, tag=modify-location
+# 处理获取用户信息 (修改响应体)
+http-response ^https:\/\/zj\.brcloud\.bankofchina\.com\/staff\/wework\/api\/wework\/staffsignin\/entrance\/getUserInfo script-path=modify-location.js, requires-body=true, tag=打卡前置伪装
+# 处理签到提交 (修改请求体)
+http-request ^https:\/\/zj\.brcloud\.bankofchina\.com\/staff\/wework\/api\/wework\/staffsignin\/entrance\/(SignIn|SignOut) script-path=modify-location.js, requires-body=true, tag=提交数据拦截
 
 [MITM]
 hostname = zj.brcloud.bankofchina.com
