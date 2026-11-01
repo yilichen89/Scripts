@@ -1,0 +1,24 @@
+#!name = 中行企业微信考勤打卡（可调时间）
+#!desc = 与 boc-attendance.lpx 功能相同，额外把签到/签退的 cron 和开关做成插件参数，装完可在 Loon 插件设置里改
+#!author = yilichen89
+#!homepage = https://github.com/yilichen89/Scripts
+#!date = 2026-11-01
+#!system = iOS,iPadOS
+#!loon_version = 3.2.1(734)
+#!tag = 考勤,打卡,企业微信
+#!type = normal
+
+[Argument]
+signinCron = input,"20 8 * * 1-5",tag=签到时间,desc=cron 表达式（分 时 日 月 周），默认工作日 08:20
+signoutCron = input,"10 18 * * 1-5",tag=签退时间,desc=cron 表达式，默认工作日 18:10
+signinEnable = switch,true,tag=启用签到
+signoutEnable = switch,true,tag=启用签退
+
+[Script]
+http-response ^https:\/\/zj\.brcloud\.bankofchina\.com\/staff\/wework\/api\/auth\/wework\/getUserInfo script-path=https://raw.githubusercontent.com/yilichen89/Scripts/refs/heads/main/hx/boc_capture.js,requires-body=true,tag=考勤-抓登录
+http-response ^https:\/\/zj\.brcloud\.bankofchina\.com\/staff\/wework\/api\/wework\/staffsignin\/entrance\/getUserInfo script-path=https://raw.githubusercontent.com/yilichen89/Scripts/refs/heads/main/hx/boc_capture.js,requires-body=true,tag=考勤-抓打卡点
+cron {signinCron} script-path=https://raw.githubusercontent.com/yilichen89/Scripts/refs/heads/main/hx/boc_clock.js,argument="signin",enable={signinEnable},tag=考勤-签到
+cron {signoutCron} script-path=https://raw.githubusercontent.com/yilichen89/Scripts/refs/heads/main/hx/boc_clock.js,argument="signout",enable={signoutEnable},tag=考勤-签退
+
+[MITM]
+hostname = zj.brcloud.bankofchina.com
